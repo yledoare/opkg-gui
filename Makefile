@@ -2,7 +2,7 @@ PROG=opkg-gui
 OBJS=opkg-gui.o
 
 OPKG_DEV=../../opkg/pkg/usr/
-DESTDIR=../pkg/usr/
+DESTDIR=$(HOME)/$(ARCH)
 
 #debug=1
 
