@@ -810,7 +810,7 @@ main(int argc, char **argv)
     g_object_set(pkg_info, "wrap-mode", GTK_WRAP_WORD_CHAR, NULL);
 
     pkg_buf = gtk_text_view_get_buffer(GTK_TEXT_VIEW(pkg_info));
-    gtk_text_buffer_set_text(pkg_buf, "Greetings mortal!", -1);
+    gtk_text_buffer_set_text(pkg_buf, "Welcome into Dibab package manager", -1);
     gtk_text_buffer_create_tag(pkg_buf, "bold",
         "weight", PANGO_WEIGHT_BOLD,
         NULL);
