@@ -414,8 +414,14 @@ gint tasklist_cmp(gconstpointer a, gconstpointer b) {
 
 void tasklist_free_item(gpointer data, gpointer user_data) {
     tTaskItem *item = (tTaskItem*)data;
+  //  free(item);
+/*
     free(item->pkg_version);
-    free(item);
+	// YLD
+        fprintf(stderr, "1.\n");
+    if(item != NULL) free(item);
+        fprintf(stderr, "2.\n");
+*/
 }
 
 void tasklist_add_remove(pkg_t *pkg, GtkTreeIter *iter) {
