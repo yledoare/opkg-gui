@@ -29,8 +29,8 @@ static GtkTextBuffer *pkg_buf;
 GtkWidget *notebook;
 GtkWidget *pkg_info;
 GtkWidget *toolbar;
+GtkWidget * tiplabel;
 GtkToolItem *log_button;
-
 // Structure with packages to add or remove
 GSList *tasks; // we don't expect too many packages, so we just use a list
 
@@ -702,12 +702,14 @@ GtkWidget* create_toolbar()
     // Apply changes
     item = gtk_tool_button_new_from_stock(GTK_STOCK_APPLY);
     gtk_toolbar_insert(GTK_TOOLBAR(toolbar), item, -1);
+gtk_widget_set_tooltip_text ( item, gettext("Apply"));
     g_signal_connect(G_OBJECT(item), "clicked",
             G_CALLBACK(apply_on_click), NULL);
 
     // Update list of packages
     item = gtk_tool_button_new_from_stock(GTK_STOCK_REFRESH);
     gtk_tool_button_set_label(GTK_TOOL_BUTTON(item), "Update");
+ gtk_widget_set_tooltip_text ( item, gettext("Update"));
     gtk_toolbar_insert(GTK_TOOLBAR(toolbar), item, -1);
     g_signal_connect(G_OBJECT(item), "clicked",
             G_CALLBACK(update_on_click), NULL);
@@ -715,6 +717,7 @@ GtkWidget* create_toolbar()
     // Upgrade packages
     item = gtk_tool_button_new_from_stock(GTK_STOCK_NETWORK);
     gtk_tool_button_set_label(GTK_TOOL_BUTTON(item), "Upgrade");
+ gtk_widget_set_tooltip_text ( item, gettext("Upgrade"));
     gtk_toolbar_insert(GTK_TOOLBAR(toolbar), item, -1);
     g_signal_connect(item, "clicked",
             G_CALLBACK(upgrade_on_click), NULL);
@@ -722,6 +725,7 @@ GtkWidget* create_toolbar()
     // Log
     item = log_button = gtk_toggle_tool_button_new_from_stock(GTK_STOCK_EDIT);
     gtk_tool_button_set_label(GTK_TOOL_BUTTON(item), "Log");
+gtk_widget_set_tooltip_text ( item, gettext("Log"));
     gtk_toolbar_insert(GTK_TOOLBAR(toolbar), item, -1);
     g_signal_connect(item, "toggled",
             G_CALLBACK(log_on_toggled), NULL);
@@ -735,6 +739,7 @@ GtkWidget* create_toolbar()
     // Close
     item = gtk_tool_button_new_from_stock(GTK_STOCK_CLOSE);
     gtk_toolbar_insert(GTK_TOOLBAR(toolbar), item, -1);
+gtk_widget_set_tooltip_text ( item, gettext("Exit"));
     g_signal_connect_swapped (item, "clicked",
         G_CALLBACK(gtk_widget_destroy), window);
 
@@ -785,7 +790,7 @@ main(int argc, char **argv)
 
     // This is how windows should be named on Kindle Touch
     // layer: application layer, type: application, name: opkg-gui */
-    gtk_window_set_title(GTK_WINDOW(window), "L:A_N:application_ID:opkg-gui");
+    gtk_window_set_title(GTK_WINDOW(window), "Package manager");
 
     window_frame = gtk_vbox_new(FALSE, 0);
 
