@@ -135,6 +135,8 @@ void ocb_add_package(pkg_t *pkg, void *user_data)
     //if (strstr(pkg->name, "-dbg") || strstr(pkg->name, "-dev"))
     //  return;
 
+    if(pkg->section == NULL)
+      return;
     vstr = pkg_version_str_alloc(pkg);
     installed = (pkg->state_status == SS_INSTALLED ? TRUE : FALSE);
 
