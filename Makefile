@@ -1,7 +1,6 @@
 PROG=opkg-gui
 
 OPKG_DEV=../../opkg/pkg/usr/
-DESTDIR=$(HOME)/$(ARCH)
 
 debug=1
 
@@ -20,8 +19,8 @@ $(PROG): opkg-gui.c
 	$(CC) $(CFLAGS) opkg-gui.c -o $(PROG) $(LDFLAGS)
 
 install: $(PROG)
-	install -d $(DESTDIR)/bin
-	install -m 0755 $(PROG) $(DESTDIR)/bin/$(PROG)
+	install -d $(DESTDIR)/$(PREFIX)/bin
+	install -m 0755 $(PROG) $(DESTDIR)/$(PREFIX)/bin/$(PROG)
 
 clean:
 	$(RM) $(OBJS) $(PROG)
